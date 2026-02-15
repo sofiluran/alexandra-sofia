@@ -614,12 +614,10 @@ body {
   position: fixed;
   inset: 0;
   background-color: #faf8f5;
-  /* Samma ljusa färg som resten */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 20000;
-  /* Högre än allt annat */
 }
 
 .password-box {
