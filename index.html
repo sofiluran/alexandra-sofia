@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alexandra & Sofia</title>
+  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="./styles/typography.css">
+  <link rel="icon" type="image/x-icon" href="./images/champagne.png">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="./scripts/script.js" defer></script>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo">Alexandra & Sofia</div>
+    <div class="navbar-items">
+      <a class="navbar-item" href="#info">Info</a>
+      <a class="navbar-item" href="#boende">Boende</a>
+      <a class="navbar-item" href="#OSA">OSA</a>
+    </div>
+  </nav>
+
+  <div id="password-screen" class="password-overlay">
+  <div class="password-box">
+    <h2>Välkommen</h2>
+    <p>Vänligen ange lösenordet från inbjudan:</p>
+    <input type="password" id="password-input" placeholder="Lösenord...">
+    <button onclick="checkPassword()">Logga in</button>
+    <p id="password-error" style="color: #7a0000; display: none; margin-top: 10px;">Fel lösenord, försök igen.</p>
+  </div>
+</div>
+
+  <div class="curtain-container" id="curtain">
+    <div class="curtain-panel panel-left-3"></div>
+    <div class="curtain-panel panel-left-2"></div>
+    <div class="curtain-panel panel-left-1"></div>
+
+    <div class="curtain-panel panel-right-1"></div>
+    <div class="curtain-panel panel-right-2"></div>
+    <div class="curtain-panel panel-right-3"></div>
+
+    <div class="curtain-overlay">
+      <button class="curtain-button">Öppna Inbjudan</button>
+    </div>
+  </div>
+
+
+  <header class="intro">
+    <div>
+      <p>Du är inbjuden till att fira bröllopet mellan</p>
+      <h1 class="hero-title">Alexandra</h1>
+      <span>&</span>
+      <h1 class="hero-title">Sofia</h1>
+    </div>
+
+    <div class="intro-text hero-subtitle">Vi skulle bli väldigt glada om du vill vara med och fira en av de mest speciella dagarna i
+      våra liv. Din
+      närvaro skulle betyda oerhört mycket för oss.</div>
+  </header>
+
+  <section class="reveal">
+    <h3 class="reveal-title">Skrapa för att avslöja datumet</h3>
+    <div class="scratch-container">
+      <div class="scratch-card">
+        <div class="base-content">31</div>
+        <canvas class="scratch-canvas" id="canvas-day"></canvas>
+        <span>DAG</span>
+      </div>
+
+      <div class="scratch-card">
+        <div class="base-content">JULI</div>
+        <canvas class="scratch-canvas" id="canvas-month"></canvas>
+        <span>MÅNAD</span>
+      </div>
+
+      <div class="scratch-card">
+        <div class="base-content">2027</div>
+        <canvas class="scratch-canvas" id="canvas-year"></canvas>
+        <span>ÅR</span>
+      </div>
+    </div>
+
+
+  </section>
+
+  <div class="countdown-title">Nedräkning</div>
+  <section class="countdown"></section>
+
+  <section id="info" class="venue">
+    <div class="venue-container">
+      <h2>Var?</h2>
+      <h3>Högberga Gård (Lidingö, Stockholm)</h3>
+      <a class="venue-link" href="https://hogberga.se/" target="_blank" rel="noopener noreferrer">Länk</a>
+    </div>
+  </section>
+
+  <section id="boende" class="boende">
+    <h2>Övernattning på högberga gård: Länk kommer snart</h2>
+  </section>
+
+  <section class="toastmasters">
+    <h2>Toastmasters: TBA</h2>
+  </section>
+
+  <section class="dresscode">
+    <h2>Dresscode: Mörk kostym</h2>
+  </section>
+
+  <!-- <section class="gifts">gifts</section> -->
+
+  <section class="more-info">
+    <h2>Mer info kommer snart!</h2>
+  </section>
+
+
+  <section id="OSA" class="attendance">
+    <h2>OSA</h2>
+    <form name="wedding-osa" method="POST" data-netlify="true" action="/tack.html">
+      <input type="hidden" name="form-name" value="wedding-osa" />
+      <fieldset class="form-info">
+        <div>
+          <label for="name">Ditt namn / Era namn:</label><br>
+          <input type="text" id="name" name="name" class="text-input" required>
+        </div>
+        <div>
+          <label for="email">Email:</label><br>
+          <input type="email" id="email" name="email" class="text-input">
+        </div>
+        <div>
+          <label for="allergies">Allergier & Specialkost:</label><br>
+          <input type="text" id="allergies" name="allergies" class="text-input">
+        </div>
+        <div>
+          <p class="osa-val-title">Kommer du på bröllopet?</p>
+          <div class="osa-val-container">
+            <input type="radio" id="ja" name="deltagande" value="ja" class="hidden-radio" required>
+            <label for="ja" class="knapp-label">Ja, jag kommer!</label>
+
+            <input type="radio" id="nej" name="deltagande" value="nej" class="hidden-radio">
+            <label for="nej" class="knapp-label">Tyvärr, jag kan inte komma.</label>
+          </div>
+        </div>
+
+        <div>
+          <p class="stay-val-title">Vill du sova över på Högberga Gård?</p>
+          <div class="stay-val-container">
+            <input type="radio" id="stay-ja" name="overnattning" value="ja" class="hidden-radio"
+              onclick="toggleNights(true)">
+            <label for="stay-ja" class="knapp-label">Ja, gärna!</label>
+            <input type="radio" id="stay-nej" name="overnattning" value="nej" class="hidden-radio"
+              onclick="toggleNights(false)">
+            <label for="stay-nej" class="knapp-label">Nej, tack.</label>
+          </div>
+        </div>
+
+        <div id="nights-container" style="display: none; margin-top: 15px; animation: fade 0.5s;">
+          <label for="nights">Hur många nätter kommer du boka?</label>
+          <select id="nights" name="nights" class="text-input">
+            <option value="1">1 natt (lördag-söndag)</option>
+            <option value="2">2 nätter (fredag-söndag)</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="song"> Önska låt till dansgolvet:</label><br>
+          <input type="text" id="song" name="song" class="text-input">
+        </div>
+
+        <div>
+          <label for="message">Meddelande till brudparet:</label><br>
+          <textarea id="message" name="message" class="text-input" rows="4" style="resize: none;"></textarea>
+        </div>
+
+        <button type="submit" class="submit-button">Skicka</button>
+      </fieldset>
+    </form>
+  </section>
+
+  <footer class="footer">Alexandra & Sofia 2027</footer>
+
+</body>
+
+</html>
