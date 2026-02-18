@@ -1,40 +1,42 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // 1. INITIERA GSAP & PLUGIN
   gsap.registerPlugin(ScrollTrigger);
 
-  // Scrolla till toppen vid omladdning
-  window.onbeforeunload = function () {
-    window.scrollTo(0, 0);
-  };
+  window.onbeforeunload = () => window.scrollTo(0, 0);
 
-  // 2. LÖSENORDSKONTROLL (Körs direkt vid laddning)
   const passwordScreen = document.getElementById('password-screen');
-  if (localStorage.getItem('wedding_access') === 'true') {
-    if (passwordScreen) passwordScreen.style.display = 'none';
-  }
-
-  // 3. RIDÅ-LOGIK (Öppnas vid klick)
   const curtain = document.getElementById('curtain');
+
+  const hasAccess = localStorage.getItem('wedding_access') === 'true';
+
+  if (hasAccess) {
+    passwordScreen.style.display = 'none';
+    document.body.style.overflow = 'auto'; 
+  } else {
+    document.body.style.overflow = 'hidden';
+  }
+  
   if (curtain) {
-    document.body.style.overflow = 'hidden'; // Lås scroll initialt
+    if (!curtain.classList.contains("is-open") && hasAccess) {
+      document.body.style.overflow = "hidden";
+    }
 
     curtain.addEventListener('click', () => {
       curtain.classList.add('is-open');
-      
+
       setTimeout(() => {
-        document.body.style.overflow = 'auto'; // Tillåt scroll efter animation
-      }, 2000); 
+        document.body.style.overflow = 'auto';
+        curtain.style.pointerEvents = "none";
+      }, 2000);
     });
   }
 
-  // 4. COUNTDOWN LOGIK
   const targetDate = new Date("2027-07-31T00:00:00").getTime();
   const countdown = document.querySelector(".countdown");
-  
+
   if (countdown) {
     countdown.classList.add("countdown-container");
-    
+
     function createBox(label) {
       const wrapper = document.createElement("div");
       wrapper.classList.add("time-wrapper");
@@ -74,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCountdown();
   }
 
-  // 5. SKRAPLOTTS-LOGIK
   const canvases = document.querySelectorAll('.scratch-canvas');
   let hasExploded = false;
   let finishedCanvases = { "canvas-day": false, "canvas-month": false, "canvas-year": false };
@@ -135,12 +136,19 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.addEventListener('mousedown', () => isDrawing = true);
     window.addEventListener('mouseup', () => isDrawing = false);
     window.addEventListener('mousemove', scratch);
-    canvas.addEventListener('touchstart', (e) => { isDrawing = true; if(e.cancelable) e.preventDefault(); }, { passive: false });
-    window.addEventListener('touchend', () => isDrawing = false);
-    window.addEventListener('touchmove', (e) => { if (isDrawing) { scratch(e); if(e.cancelable) e.preventDefault(); } }, { passive: false });
+
+    canvas.addEventListener('touchstart', (e) => {
+      isDrawing = true;
+      e.preventDefault();
+    }, { passive: false });
+
+    canvas.addEventListener('touchend', () => isDrawing = false);
+    canvas.addEventListener('touchmove', (e) => {
+      scratch(e);
+      e.preventDefault();
+    }, { passive: false });
   });
 
-  // 6. SCROLL-ANIMATIONER (OSA-formulär)
   gsap.from("#OSA", {
     scrollTrigger: {
       trigger: "#OSA",
@@ -165,28 +173,40 @@ document.addEventListener('DOMContentLoaded', () => {
     ease: "power2.out"
   });
 
-  // Koppla enter-knapp till lösenordsfältet
-  document.getElementById('password-input')?.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-      checkPassword();
-    }
+  gsap.utils.toArray("section:not(#OSA), header, .venue, .boende, .toastmasters, .dresscode, .more-info").forEach(el => {
+  gsap.from(el, {
+    scrollTrigger: {
+      trigger: el,
+      start: "top 85%",
+      toggleActions: "play none none reverse"
+    },
+    opacity: 0,
+    y: 40,
+    duration: 1.2,
+    ease: "power2.out"
   });
-}); 
+});
 
-// --- FRISTÅENDE FUNKTIONER ---
+  document.getElementById('password-input')?.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') checkPassword();
+  });
+});
 
 function checkPassword() {
   const password = document.getElementById('password-input').value;
-  const correctPassword = "stockholm"; // Ditt valda lösenord
+  const correctPassword = "stockholm";
   const errorMsg = document.getElementById('password-error');
   const screen = document.getElementById('password-screen');
 
   if (password === correctPassword) {
     localStorage.setItem('wedding_access', 'true');
-    gsap.to(screen, { 
-      opacity: 0, 
-      duration: 0.8, 
-      onComplete: () => screen.style.display = 'none' 
+    gsap.to(screen, {
+      opacity: 0,
+      duration: 0.8,
+      onComplete: () => {
+        screen.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Viktigt!
+      }
     });
   } else {
     errorMsg.style.display = 'block';
@@ -201,8 +221,8 @@ function triggerConfetti(sourceX, sourceY) {
   confetti({
     particleCount: 150,
     spread: 70,
-    origin: { x: x, y: y },
-    colors: colors,
+    origin: { x, y },
+    colors,
     shapes: ['circle'],
     scalar: 0.8,
     zIndex: 9999

@@ -7,6 +7,9 @@ body {
   background-color: #ffffff;
   margin: 0;
   position: relative;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 .navbar {
@@ -56,10 +59,22 @@ body {
 
 .header {
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   width: 100%;
   overflow: hidden;
   background-color: #faf8f5;
+}
+
+.hero-title {
+  font-weight: 600;
+  font-style: italic;
+  font-size: 5rem;
+  letter-spacing: 2px;
+  line-height: 1.1;
+  margin: 0;
+  color: #5c2018;
+  width: 100%;
 }
 
 .header-title {
@@ -89,46 +104,38 @@ body {
   width: 100%;
   min-height: 100vh;
   letter-spacing: 1px;
+}
 
-  h1 {
-    font-size: 4rem;
-    margin: 0;
-    width: 100%;
-    font-family: 'Playfair Display', serif;
-    font-weight: 400;
-    font-style: italic;
-    text-transform: none;
-    letter-spacing: 1px;
-  }
+.hero-span {
+  display: block;
+  font-size: 4rem;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 4rem;
+  margin: 10px 0;
+}
 
-  span {
-    display: block;
-    font-size: 4rem;
-    margin: 5px 0;
-  }
+.intro p {
+  font-size: 2rem;
+  padding: 40px;
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.8;
+}
 
-  p {
-    font-size: 2rem;
-    padding: 40px;
-    line-height: 1.8;
-    font-family: 'Playfair Display', serif;
-    max-width: 600px;
-    margin: 0 auto;
-    opacity: 0.8;
-  }
-
-  div {
-    margin: 20px;
-  }
+.intro div {
+  margin: 20px;
 }
 
 .intro-text {
   padding: 40px;
-  line-height: 1.8;
-  font-family: 'Lato', sans-serif;
-  max-width: 600px;
   margin: 0 auto;
-  opacity: 0.8;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  line-height: 1.7;
+  max-width: 650px;
+  opacity: 0.85;
+  margin-top: 30px;
 }
 
 .reveal {
@@ -159,14 +166,12 @@ body {
   min-height: 300px;
   padding: 0 0 80px 0;
   margin-bottom: 20px;
-
 }
 
 .countdown-container {
   display: flex;
   gap: 40px;
   align-items: center;
-  font-family: 'Playfair Display', serif;
 }
 
 .time-wrapper {
@@ -224,10 +229,10 @@ body {
   border-radius: 8px;
   box-shadow: 0 15px 35px rgba(92, 32, 24, 0.1),
     0 5px 15px rgba(0, 0, 0, 0.05);
+}
 
-  h2 {
-    font-size: 2rem;
-  }
+.venue-container h2 {
+  font-size: 2rem;
 }
 
 .venue-link {
@@ -237,7 +242,6 @@ body {
 .boende {
   padding: 80px;
   text-align: center;
-
 }
 
 .toastmasters {
@@ -273,10 +277,10 @@ body {
   text-align: center;
   padding-bottom: 20px;
   text-align: left;
+}
 
-  h2 {
-    padding: 20px;
-  }
+.attendance h2 {
+  padding: 20px;
 }
 
 .form-info {
@@ -310,7 +314,6 @@ body {
   margin-bottom: 10px;
 }
 
-
 .knapp-label {
   align-items: center;
   justify-content: center;
@@ -329,7 +332,6 @@ body {
   flex: 1;
 }
 
-
 .knapp-label:hover {
   background-color: #faf8f5;
 }
@@ -338,7 +340,6 @@ body {
   background-color: #5c2018;
   color: #ffffff;
 }
-
 
 .text-input {
   width: 100%;
@@ -401,7 +402,6 @@ body {
 
 .curtain-container {
   position: absolute;
-  top: 58px;
   left: 0;
   width: 100%;
   height: 100vh;
@@ -487,12 +487,21 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  font-family: 'Playfair Display', serif;
   font-size: 1rem;
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   text-transform: uppercase;
   letter-spacing: 2px;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.is-open .curtain-panel {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.is-open .curtain-button {
+  transform: scale(0.6);
+  opacity: 0;
 }
 
 .panel-left-1 {
@@ -524,7 +533,6 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  font-family: 'YourHeaderFont', serif;
   color: #555;
   transition: transform 0.3s ease;
 }
@@ -543,7 +551,6 @@ body {
 }
 
 .reveal-title {
-  font-family: 'Playfair Display', serif;
   color: #5c2018;
   font-size: 1.4rem;
   margin-bottom: 30px;
@@ -597,10 +604,8 @@ body {
   font-size: 1.8rem;
   font-weight: bold;
   color: #5c2018;
-  ;
   border: 2px solid #eee;
   user-select: none;
-
 }
 
 .scratch-card span {
