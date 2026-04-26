@@ -660,6 +660,19 @@ body {
   background-color: #4a1a14;
 }
 
+.pic {
+  display: flex;
+  height: 700px;
+  justify-content: center;
+
+  img {
+    object-fit: cover 25%;
+    height: 100%;
+    width: 100%;
+    display: block;
+  }
+}
+
 @keyframes fade {
   from {
     opacity: 0;
@@ -758,4 +771,14 @@ body {
     align-self: center;
     text-align: center;
   }
+
+  .pic {
+    height: 500px;
+
+    img {
+      object-position: center;
+      width: 100%;
+    }
+  }
+
 }
