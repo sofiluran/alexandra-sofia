@@ -126,8 +126,8 @@
 
   <section id="OSA" class="attendance">
     <h2>OSA senast 28 februari 2027</h2>
-    <form name="wedding-osa-new" method="POST" data-netlify="true" action="/tack.html">
-      <input type="hidden" name="form-name" value="wedding-osa-new" />
+    <form name="wedding-osa-final" method="POST" data-netlify="true" action="/tack.html">
+      <input type="hidden" name="form-name" value="wedding-osa-final" />
       <fieldset class="form-info">
         <div>
           <label for="name">Ditt namn / Era namn:</label><br>
@@ -155,10 +155,10 @@
         <div>
           <p class="stay-val-title">Vill du/ni sova över på Högberga Gård?</p>
           <div class="stay-val-container">
-            <input type="radio" id="stay-ja" name="overnattning" value="ja" class="hidden-radio"
+            <input type="radio" id="stay-ja" name="overnattning" value="ja" class="hidden-radio" required>
               onclick="toggleNights(true)">
             <label for="stay-ja" class="knapp-label">Ja, gärna!</label>
-            <input type="radio" id="stay-nej" name="overnattning" value="nej" class="hidden-radio"
+            <input type="radio" id="stay-nej" name="overnattning" value="nej" class="hidden-radio" required>
               onclick="toggleNights(false)">
             <label for="stay-nej" class="knapp-label">Nej, tack.</label>
           </div>
@@ -166,7 +166,7 @@
 
         <div id="nights-container" style="display: none; margin-top: 15px; animation: fade 0.5s;">
           <label for="nights">Hur många nätter vill du/ni boka?</label>
-          <select id="nights" name="nights" class="text-input" disabled>
+          <select id="nights" name="nights" class="text-input" >
             <option value="1">1 natt (lördag-söndag)</option>
             <option value="2">2 nätter (fredag-söndag)</option>
           </select>

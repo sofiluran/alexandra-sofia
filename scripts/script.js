@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+  const select = document.getElementById('nights');
+  if (select) select.disabled = true;
+
   gsap.registerPlugin(ScrollTrigger);
 
   window.onbeforeunload = () => window.scrollTo(0, 0);
@@ -11,11 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (hasAccess) {
     passwordScreen.style.display = 'none';
-    document.body.style.overflow = 'auto'; 
+    document.body.style.overflow = 'auto';
   } else {
     document.body.style.overflow = 'hidden';
   }
-  
+
   if (curtain) {
     if (!curtain.classList.contains("is-open") && hasAccess) {
       document.body.style.overflow = "hidden";
@@ -174,18 +177,18 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   gsap.utils.toArray("section:not(#OSA), header, .venue, .boende, .toastmasters, .dresscode, .more-info").forEach(el => {
-  gsap.from(el, {
-    scrollTrigger: {
-      trigger: el,
-      start: "top 85%",
-      toggleActions: "play none none reverse"
-    },
-    opacity: 0,
-    y: 40,
-    duration: 1.2,
-    ease: "power2.out"
+    gsap.from(el, {
+      scrollTrigger: {
+        trigger: el,
+        start: "top 85%",
+        toggleActions: "play none none reverse"
+      },
+      opacity: 0,
+      y: 40,
+      duration: 1.2,
+      ease: "power2.out"
+    });
   });
-});
 
   document.getElementById('password-input')?.addEventListener('keypress', function (e) {
     if (e.key === 'Enter') checkPassword();
@@ -235,11 +238,13 @@ function toggleNights(show) {
   if (show) {
     nightsContainer.style.display = 'block';
     gsap.fromTo(nightsContainer, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
-     select.disabled = false; 
+    select.disabled = false;
   } else {
-    gsap.to(nightsContainer, { opacity: 0, y: -20, duration: 0.4, onComplete: () => {
-      nightsContainer.style.display = 'none';
-       select.disabled = true; 
-    }});
+    gsap.to(nightsContainer, {
+      opacity: 0, y: -20, duration: 0.4, onComplete: () => {
+        nightsContainer.style.display = 'none';
+        select.disabled = true;
+      }
+    });
   }
 }
