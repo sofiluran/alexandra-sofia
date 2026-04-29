@@ -113,8 +113,6 @@
     <h2>Dresscode: Mörk kostym</h2>
   </section>
 
-  <!-- <section class="gifts">gifts</section> -->
-
   <section class="more-info">
     <h2>Vi ser så mycket fram emot att få fira vår dag med er! </h2>
     <h3>Kvällen är barnfri där vi skålar och firar långt in på småtimmarna, så låt småttingarna ha det mysigt på
@@ -128,8 +126,8 @@
 
   <section id="OSA" class="attendance">
     <h2>OSA senast 28 februari 2027</h2>
-    <form name="wedding-osa" method="POST" data-netlify="true" action="/tack.html">
-      <input type="hidden" name="form-name" value="wedding-osa" />
+    <form name="wedding-osa-new" method="POST" data-netlify="true" action="/tack.html">
+      <input type="hidden" name="form-name" value="wedding-osa-new" />
       <fieldset class="form-info">
         <div>
           <label for="name">Ditt namn / Era namn:</label><br>
@@ -146,10 +144,10 @@
         <div>
           <p class="osa-val-title">Kommer du/ni på bröllopet?</p>
           <div class="osa-val-container">
-            <input type="radio" id="ja" name="deltagande" value="ja" class="hidden-radio" required>
+            <input type="radio" id="ja" name="deltagande" value="ja" class="hidden-radio" >
             <label for="ja" class="knapp-label">Ja, jag/vi kommer!</label>
 
-            <input type="radio" id="nej" name="deltagande" value="nej" class="hidden-radio">
+            <input type="radio" id="nej" name="deltagande" value="nej" class="hidden-radio" >
             <label for="nej" class="knapp-label">Tyvärr, jag/vi kan inte komma.</label>
           </div>
         </div>
@@ -168,7 +166,7 @@
 
         <div id="nights-container" style="display: none; margin-top: 15px; animation: fade 0.5s;">
           <label for="nights">Hur många nätter vill du/ni boka?</label>
-          <select id="nights" name="nights" class="text-input">
+          <select id="nights" name="nights" class="text-input" disabled>
             <option value="1">1 natt (lördag-söndag)</option>
             <option value="2">2 nätter (fredag-söndag)</option>
           </select>

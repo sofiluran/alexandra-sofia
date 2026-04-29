@@ -231,12 +231,15 @@ function triggerConfetti(sourceX, sourceY) {
 
 function toggleNights(show) {
   const nightsContainer = document.getElementById('nights-container');
+  const select = document.getElementById('nights');
   if (show) {
     nightsContainer.style.display = 'block';
     gsap.fromTo(nightsContainer, { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" });
+     select.disabled = false; 
   } else {
     gsap.to(nightsContainer, { opacity: 0, y: -20, duration: 0.4, onComplete: () => {
       nightsContainer.style.display = 'none';
+       select.disabled = true; 
     }});
   }
 }
