@@ -144,10 +144,10 @@
         <div>
           <p class="osa-val-title">Kommer du/ni på bröllopet?</p>
           <div class="osa-val-container">
-            <input type="radio" id="ja" name="deltagande" value="ja" class="hidden-radio" >
+            <input type="radio" id="ja" name="deltagande" value="ja" class="hidden-radio" required >
             <label for="ja" class="knapp-label">Ja, jag/vi kommer!</label>
 
-            <input type="radio" id="nej" name="deltagande" value="nej" class="hidden-radio" >
+            <input type="radio" id="nej" name="deltagande" value="nej" class="hidden-radio" required >
             <label for="nej" class="knapp-label">Tyvärr, jag/vi kan inte komma.</label>
           </div>
         </div>
@@ -155,10 +155,10 @@
         <div>
           <p class="stay-val-title">Vill du/ni sova över på Högberga Gård?</p>
           <div class="stay-val-container">
-            <input type="radio" id="stay-ja" name="overnattning" value="ja" class="hidden-radio" required
+            <input type="radio" id="stay-ja" name="overnattning" value="ja" class="hidden-radio" 
               onclick="toggleNights(true)">
             <label for="stay-ja" class="knapp-label">Ja, gärna!</label>
-            <input type="radio" id="stay-nej" name="overnattning" value="nej" class="hidden-radio" required
+            <input type="radio" id="stay-nej" name="overnattning" value="nej" class="hidden-radio" 
               onclick="toggleNights(false)">
             <label for="stay-nej" class="knapp-label">Nej, tack.</label>
           </div>
